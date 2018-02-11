@@ -5,11 +5,14 @@
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
 #Install the wget and java packages
-['wget','java-1.7.0-openjdk-devel'].each do |p|
-  package p do
-    action :install
-  end
-end
+#['wget','java-1.7.0-openjdk-devel'].each do |p|
+#  package p do
+#    action :install
+#  end
+#end
+
+include_recipe 'tomcat::java'
+package 'wget'
 
 #Create a group called tomcat
 group 'tomcat'

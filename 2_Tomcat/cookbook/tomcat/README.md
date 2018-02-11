@@ -19,8 +19,8 @@ Perform the following on the workstation
 * Retrieve cookbook list and validate
 	* knife cookbook list
 * Bootstrap the provisioned node using key based authentication
-	* knife bootstrap <34.229.215.61> --ssh-user <ec2-user> --sudo --identity-file <~/.ssh/awskey.pem> --node-name <node1-rhel-tomcat> --run-list <'recipe[tomcat]'>( Make sure you change the ipaddress, ssh-user and identity file to match your environment)
+	* knife bootstrap <34.229.215.61> --ssh-user <ec2-user> --sudo --identity-file <~/.ssh/awskey.pem> --node-name <node1-rhel-tomcat> --run-list <'recipe[tomcat],recipe[tomcat::java]'>( Make sure you change the ipaddress, ssh-user and identity file to match your environment)
 * Bootstrap the provisioned node using password authentication
-	* knife bootstrap <ipaddress> --ssh-user <USER> --ssh-password <password> --sudo --use-sudo-password --node-name <node1-centos-tomcat> --run-list <'recipe[tomcat]'>
+	* knife bootstrap <ipaddress> --ssh-user <USER> --ssh-password <password> --sudo --use-sudo-password --node-name <node1-centos-tomcat> --run-list <'recipe[tomcat],recipe[tomcat::java]'>
 * Test it again
 	* knife ssh 'name:node1-rhel-mongo' 'sudo chef-client' --ssh-user ec2-user --identity-file ~/.ssh/awskey.pem
