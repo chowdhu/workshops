@@ -24,7 +24,7 @@ end
 
 #This bash script will download the tar file untars it and modifies permissions of the directory
 bash 'install_tomcat' do
-  user 'ec2-user'
+  user 'root'
   cwd '/tmp'
   code <<-EOH
   sudo mkdir -p /opt/tomcat
