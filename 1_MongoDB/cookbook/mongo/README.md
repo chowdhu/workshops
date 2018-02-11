@@ -4,12 +4,12 @@ Use this Chef recipe to successfully install MongoDB on a RHEL-based system.
 # About this recipe
 Use this Chef recipe to successfully install MongoDB on a RHEL-based system.
 
-#Porerequistes
+# Prerequistes
 * Provision a RHEL system(This will act as a node where we will install MongoDB)
 * Hosted chef or Chef server  
 * Workstation with chefDK installed and configured to talk to the Chef Server
 
-#Instructions
+# Instructions
 Perform the following on the workstation
 
 * git clone https://github.com/chowdhu/workshops.git
