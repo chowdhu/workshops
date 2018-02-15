@@ -25,15 +25,41 @@ user 'tomcat' do
   manage_home  false
 end
 
+#Creates a directory
+directory 'createDir' do
+  owner 'tomcat'
+  group 'tomcat'
+  mode '0755'
+  path '/opt/tomcat'
+  action :create
+end
+
+tcBinary = 'apache-tomcat-8.5.28.tar.gz'
+
+#Download the binary
+remote_file 'downloadBinary' do
+  source 'http://archive.apache.org/dist/tomcat/tomcat-8/v8.5.28/bin/'+ tcBinary
+  owner 'root'
+  group 'root'
+  mode '0755'
+  path '/tmp/'+ tcBinary
+  action :create
+end
+
+#Execute command
+execute 'extractTar' do
+  command 'tar xvf '+ tcBinary + ' -C /opt/tomcat --strip-components=1'
+  cwd '/tmp'
+  user 'root'
+  not_if { File.exists?(tcBinary) }
+end
+
+
 #This bash script will download the tar file untars it and modifies permissions of the directory
 bash 'install_tomcat' do
   user 'root'
   cwd '/tmp'
   code <<-EOH
-  sudo mkdir -p /opt/tomcat
-  #sudo wget -c  http://apache.cs.utah.edu/tomcat/tomcat-8/v8.5.27/bin/apache-tomcat-8.5.27.tar.gz
-  sudo wget -c http://apache.cs.utah.edu/tomcat/tomcat-8/v8.5.28/bin/apache-tomcat-8.5.28.tar.gz
-  sudo tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
   sudo chgrp -R tomcat /opt/tomcat
   sudo chmod -R g+r /opt/tomcat/conf
   sudo chmod g+x /opt/tomcat/conf

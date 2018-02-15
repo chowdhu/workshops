@@ -7,7 +7,7 @@
 
 #my instance is on EC2 
 unless os.windows?
-  describe user('ec2-user') do
+  describe user('root') do
     it { should exist }
   end
 end
