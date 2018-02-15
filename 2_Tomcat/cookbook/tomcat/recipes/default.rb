@@ -31,7 +31,8 @@ bash 'install_tomcat' do
   cwd '/tmp'
   code <<-EOH
   sudo mkdir -p /opt/tomcat
-  sudo wget -c  http://apache.cs.utah.edu/tomcat/tomcat-8/v8.5.27/bin/apache-tomcat-8.5.27.tar.gz
+  #sudo wget -c  http://apache.cs.utah.edu/tomcat/tomcat-8/v8.5.27/bin/apache-tomcat-8.5.27.tar.gz
+  sudo wget -c http://apache.cs.utah.edu/tomcat/tomcat-8/v8.5.28/bin/apache-tomcat-8.5.28.tar.gz
   sudo tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
   sudo chgrp -R tomcat /opt/tomcat
   sudo chmod -R g+r /opt/tomcat/conf
